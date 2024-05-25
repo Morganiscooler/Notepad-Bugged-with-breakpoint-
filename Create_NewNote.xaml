@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Notepad__easy_.Create_NewNote"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Create new note">
+
+    <VerticalStackLayout>
+        <Label HorizontalOptions="Center" VerticalOptions="Center" />
+        <Entry Placeholder="Enter a name for your note" WidthRequest="800" />
+        <!--  5 Colors to choose from; Must be centered evenly  -->
+        <FlexLayout
+            Direction="Row"
+            JustifyContent="SpaceEvenly"
+            Wrap="Wrap">
+            <Grid
+                Margin="50,50,250,50"
+                ColumnSpacing="6"
+                RowSpacing="6"
+                WidthRequest="300">
+
+                <!--  Used to determine how many boxes go in each row/column  -->
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    BackgroundColor="#ffe66e"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    CornerRadius="1" />
+
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="#a1ef9b"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    CornerRadius="1" />
+
+                <Button
+                    Grid.Column="2"
+                    BackgroundColor="#ffafdf"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    CornerRadius="1" />
+
+                <Button
+                    Grid.Column="3"
+                    BackgroundColor="#d7afff"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    CornerRadius="1" />
+
+                <Button
+                    Grid.Column="4"
+                    BackgroundColor="#9edfff"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    CornerRadius="1" />
+
+                <Button
+                    Grid.Column="5"
+                    BackgroundColor="LightGray"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    CornerRadius="1" />
+
+                <Button
+                    Grid.Column="5"
+                    BackgroundColor="Gray"
+                    BorderColor="Black"
+                    BorderWidth="3"
+                    CornerRadius="1"
+                    Text="Upload" />
+
+            </Grid>
+        </FlexLayout>
+    </VerticalStackLayout>
+</ContentPage>
