@@ -66,10 +66,16 @@
 	  <Compile Update="Create_NewNote.xaml.cs">
 	    <DependentUpon>Create_NewNote.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="NotePage.xaml.cs">
+	    <DependentUpon>NotePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Create_NewNote.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="NotePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

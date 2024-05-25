@@ -13,29 +13,26 @@ public partial class Create_NewNote : ContentPage
 	public Create_NewNote()
 	{
 		InitializeComponent();
-        //Grid grid = new Grid
-        //{
-        //    RowDefinitions =
-        //    {
-        //        //new RowDefinition { Height = new GridLength(DeviceDisplay.Current.MainDisplayInfo.Width, GridUnitType.Star) },
-        //        new RowDefinition { Height = new GridLength(50) }
-        //    },
-        //    ColumnDefinitions =
-        //    {
-        //        new ColumnDefinition()
-        //    }
-        //};
+		
+    }
 
-        //grid.Children.Add(new BoxView
-        //{
-        //    Color = Colors.Green
-        //});
-        //grid.Children.Add(new Label
-        //{
-        //    Text = $"",
-        //    HorizontalOptions = LayoutOptions.Center,
-        //    VerticalOptions = LayoutOptions.Center
-        //});
-        //Content = grid;
+    // Function for using one of the 6 default colors as the background of the note
+    private void SetNoteColor(object sender, EventArgs e)
+    {
+
+        // Store the color chosen as the background for the new note once made
+        NewPage1 NotePage = new NewPage1();
+        
+
+
+    }
+
+    // Function for UPLOADING your own background as the note's background
+    private void UploadNoteColor(object sender, EventArgs e)
+    {
+        // Click event works (Confirmed)
+        
+        
+
     }
 }
