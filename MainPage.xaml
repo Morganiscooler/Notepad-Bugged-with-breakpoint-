@@ -13,19 +13,24 @@
                 TextChanged="OnTextChanged"
                 WidthRequest="1050" />
             <ListView x:Name="searchResults" />
-
-            <Button
-                x:Name="Notes"
-                Margin="50,50,50,50"
-                BorderColor="#000"
-                BorderWidth="5"
-                Clicked="OpenNote"
-                CornerRadius="1"
-                FontSize="25"
-                HeightRequest="100"
-                Text="Let's get started!"
-                WidthRequest="1050" />
-
+            <Grid x:Name="AutoAddNotes">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button
+                    x:Name="Notes"
+                    Margin="50,50,50,50"
+                    BorderColor="#000"
+                    BorderWidth="5"
+                    Clicked="OpenNote"
+                    CornerRadius="1"
+                    FontSize="25"
+                    HeightRequest="100"
+                    Text="Let's get started!"
+                    WidthRequest="1050" />
+            </Grid>
             <!--  Add a ContentPage control for popup when Notes is clicked  -->
 
             <Button

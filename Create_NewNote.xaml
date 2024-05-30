@@ -4,13 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Create new note">
+
     <VerticalStackLayout>
         <Label HorizontalOptions="Center" VerticalOptions="Center" />
-        <Entry Placeholder="Enter a name for your note" WidthRequest="800" />
+        <Entry
+            x:Name="EnterName"
+            Placeholder="Enter a name for your note"
+            WidthRequest="800" />
         <!--  5 Colors to choose from; Must be centered evenly  -->
         <!--  Note: make sure to not put a flexlayout inside/outside of grid  -->
+
         <Grid
-            Margin="50,80,250,50"
+            Margin="200,80,250,50"
             Padding="-25"
             ColumnSpacing="6"
             RowSpacing="3"
@@ -36,57 +41,58 @@
                 I may decide on giving each button its own function,
                 but one function seems the most efficient.
             -->
+
             <Button
-                x:Name="Yellow"
+                x:Name="yellow"
                 BackgroundColor="#ffe66e"
                 BorderColor="Black"
                 BorderWidth="3"
-                Clicked="SetNoteColor"
+                Clicked="Yellow"
                 CornerRadius="1" />
 
             <Button
-                x:Name="Lime"
+                x:Name="green"
                 Grid.Column="1"
                 BackgroundColor="#a1ef9b"
                 BorderColor="Black"
                 BorderWidth="3"
-                Clicked="SetNoteColor"
+                Clicked="Green"
                 CornerRadius="1" />
 
             <Button
-                x:Name="Pink"
+                x:Name="pink"
                 Grid.Column="2"
                 BackgroundColor="#ffafdf"
                 BorderColor="Black"
                 BorderWidth="3"
-                Clicked="SetNoteColor"
+                Clicked="Pink"
                 CornerRadius="1" />
 
             <Button
-                x:Name="Purple"
+                x:Name="purple"
                 Grid.Column="3"
                 BackgroundColor="#d7afff"
                 BorderColor="Black"
                 BorderWidth="3"
-                Clicked="SetNoteColor"
+                Clicked="Purple"
                 CornerRadius="1" />
 
             <Button
-                x:Name="Blue"
+                x:Name="blue"
                 Grid.Column="4"
                 BackgroundColor="#9edfff"
                 BorderColor="Black"
                 BorderWidth="3"
-                Clicked="SetNoteColor"
+                Clicked="Blue"
                 CornerRadius="1" />
 
             <Button
-                x:Name="Gray"
+                x:Name="gray"
                 Grid.Column="5"
                 BackgroundColor="LightGray"
                 BorderColor="Black"
                 BorderWidth="3"
-                Clicked="SetNoteColor"
+                Clicked="Gray"
                 CornerRadius="1" />
 
             <Button
@@ -97,19 +103,75 @@
                 BorderWidth="3"
                 Clicked="UploadNoteColor"
                 CornerRadius="1"
+                Pressed="PressedBtn"
+                Released="ReleasedBtn"
                 Text="Upload"
                 WidthRequest="100" />
 
         </Grid>
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="0" />
+            </Grid.ColumnDefinitions>
+
             <Label
                 Grid.Row="2"
                 Grid.Column="1"
-                Margin="-650,40,50,50"
                 FontAttributes="Bold"
-                FontSize="30"
+                FontSize="35"
                 HorizontalOptions="Center"
-                Text="Font Size:" />
+                LineBreakMode="NoWrap"
+                Text="Font Size:"
+                WidthRequest="400" />
+            <Button
+                Grid.Column="2"
+                Background="#fff"
+                BorderColor="#000"
+                BorderWidth="5"
+                CornerRadius="3"
+                FontSize="10"
+                HeightRequest="30"
+                Text="A"
+                TextColor="Black"
+                WidthRequest="30" />
+            <Slider
+                x:Name="Slider"
+                Grid.Row="3"
+                Grid.Column="3"
+                Maximum="50"
+                Minimum="0"
+                ValueChanged="FontSize"
+                WidthRequest="250" />
+            <Button
+                Grid.Column="4"
+                BackgroundColor="#fff"
+                BorderColor="#000"
+                BorderWidth="5"
+                CornerRadius="3"
+                FontSize="30"
+                HeightRequest="60"
+                Text="A"
+                TextColor="Black"
+                WidthRequest="60" />
+
         </Grid>
+        <Label x:Name="SliderValueTest" />
+        <Button
+            x:Name="ContinueBtn"
+            Margin="150,150,-500,100"
+            BackgroundColor="#f25022"
+            BorderColor="#000"
+            BorderWidth="5"
+            Clicked="OpenNotePage"
+            CornerRadius="3"
+            Text="Continue"
+            WidthRequest="300" />
     </VerticalStackLayout>
 </ContentPage>

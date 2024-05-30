@@ -30,6 +30,8 @@ namespace Notepad__easy_
         }
 
         int count = 0;
+        // Change the color randomizer to automatically happen when the DOM content loads for the app
+        // *Everytime it is reopened
         private void CreateNewNotes(object sender, EventArgs e) 
         {
             // Click button works
@@ -44,14 +46,22 @@ namespace Notepad__easy_
         {
             // Click event works (Confirmed)
             Create_NewNote openNote = new Create_NewNote();
-            Navigation.PushAsync(new Create_NewNote());
-            Notes.BackgroundColor = CreateColor();
+            Navigation.PushAsync(new Create_NewNote());  
 
         }
         public MainPage()
         {
             InitializeComponent();
+            Notes.BackgroundColor = CreateColor();
+
+            //Announce the amount of new notes created here on the Mainpage's grid
+            //SemanticScreenReader.Announce(noteCount.Text);
+
         }
+        
+
+// set height directly or find handler then set winHeight
+       //int winWidth = 450;
 
         //public class SearchViewModel : INotifyPropertyChanged
         //{
