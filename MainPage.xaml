@@ -2,7 +2,10 @@
 <ContentPage
     x:Class="Notepad__easy_.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Notepad__easy_.ViewModel"
+    Title="Notepad 📝"
+    x:DataType="viewmodel:MainViewModel">
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
@@ -13,24 +16,34 @@
                 TextChanged="OnTextChanged"
                 WidthRequest="1050" />
             <ListView x:Name="searchResults" />
-            <Grid x:Name="AutoAddNotes">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Button
-                    x:Name="Notes"
-                    Margin="50,50,50,50"
-                    BorderColor="#000"
-                    BorderWidth="5"
-                    Clicked="OpenNote"
-                    CornerRadius="1"
-                    FontSize="25"
-                    HeightRequest="100"
-                    Text="Let's get started!"
-                    WidthRequest="1050" />
-            </Grid>
+
+            <Button
+                x:Name="Notes"
+                Margin="50,50,50,50"
+                BorderColor="#000"
+                BorderWidth="5"
+                Clicked="OpenNote"
+                CornerRadius="1"
+                FontSize="25"
+                HeightRequest="100"
+                Text="Let's get started!"
+                WidthRequest="1050" />
+
+            <CollectionView Grid.Row="2" ItemsSource="{Binding Items}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+                        <SwipeView BackgroundColor="Red">
+                            <SwipeView.RightItems>
+                                <SwipeItem
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Text="Delete" />
+                            </SwipeView.RightItems>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <!--  Add a ContentPage control for popup when Notes is clicked  -->
 
             <Button

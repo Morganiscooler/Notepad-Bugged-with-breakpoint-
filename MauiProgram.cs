@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Notepad__easy_.ViewModel;
 
 namespace Notepad__easy_
 {
@@ -13,11 +14,13 @@ namespace Notepad__easy_
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("FluentSystemIcons-Filled.ttf", "FluentIcons");
+                    fonts.AddFont("FluentSystemIcons-Regular.ttf", "FluentIconsRegular");
+                    fonts.AddFont("Segoe Fluent Icons.ttf", "FluentIconsReal");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainViewModel>();
 
             return builder.Build();
         }

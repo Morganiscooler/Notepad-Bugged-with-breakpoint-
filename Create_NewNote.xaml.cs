@@ -10,8 +10,6 @@ namespace Notepad__easy_;
 
 public partial class Create_NewNote : ContentPage
 {
-    NotePage notePage = new NotePage();
-    MainPage mainPage = new MainPage();
 
     // Color buttons:
     public Create_NewNote()
@@ -265,7 +263,6 @@ public partial class Create_NewNote : ContentPage
         noteNum++;
         NotePage notePage = new NotePage();
         //* Find a way to display text on the mainpage about the amount of new notes created
-        MainPage mainPage = new MainPage();
         noteCount++;
         //mainPage.DisplayAlert($"The amount of new notes created is {noteCount}");
 

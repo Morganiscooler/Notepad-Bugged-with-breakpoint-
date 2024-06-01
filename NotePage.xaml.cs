@@ -1,3 +1,5 @@
+using Notepad__easy_.ViewModel;
+using System.Windows.Input;
 namespace Notepad__easy_;
 
 public partial class NotePage : ContentPage
@@ -10,4 +12,13 @@ public partial class NotePage : ContentPage
         //Notepad.BackgroundColor
 
     }
+
+    private void BackHome(object sender, EventArgs e) 
+	{
+        MainViewModel vm = new MainViewModel();
+        MainPage mainPage = new MainPage(vm);
+		mainPage.BindingContext = vm;
+        Navigation.PushAsync(mainPage);
+		// Go back to the MainPage
+	}
 }

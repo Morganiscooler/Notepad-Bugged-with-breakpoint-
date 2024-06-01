@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Graphics.Converters;
+using Notepad__easy_.ViewModel;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -49,10 +50,12 @@ namespace Notepad__easy_
             Navigation.PushAsync(new Create_NewNote());  
 
         }
-        public MainPage()
+        public MainPage(MainViewModel vm)
         {
             InitializeComponent();
             Notes.BackgroundColor = CreateColor();
+            BindingContext = vm;
+
 
             //Announce the amount of new notes created here on the Mainpage's grid
             //SemanticScreenReader.Announce(noteCount.Text);
