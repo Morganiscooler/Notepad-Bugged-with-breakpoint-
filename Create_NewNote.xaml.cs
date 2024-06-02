@@ -1,4 +1,5 @@
 using Microsoft.Maui.Graphics.Converters;
+using Notepad__easy_.ViewModel;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -12,10 +13,11 @@ public partial class Create_NewNote : ContentPage
 {
 
     // Color buttons:
-    public Create_NewNote()
+   
+    public Create_NewNote(MainViewModel vm)
 	{
 		InitializeComponent();
-		
+		BindingContext = vm;
     }
     private void FontSize(object sender, EventArgs e) 
     {
@@ -252,27 +254,19 @@ public partial class Create_NewNote : ContentPage
 
         return null;
     }
-    private void ContinueBtn_Clicked(object sender, EventArgs e)
-    {
 
-    }
     int noteNum = 0;
     int noteCount = 0;
     private void OpenNotePage(object sender, EventArgs e)
     {
         noteNum++;
-        NotePage notePage = new NotePage();
+        MainViewModel vm = new MainViewModel();
+        NotePage notePage = new NotePage(vm);
         //* Find a way to display text on the mainpage about the amount of new notes created
         noteCount++;
         //mainPage.DisplayAlert($"The amount of new notes created is {noteCount}");
 
-        notePage.Title = EnterName.Text;
-        
 
-        if (notePage.Title == null) 
-        {       
-            notePage.Title = $"New note ({noteNum})";
-        }
 
         Navigation.PushAsync(notePage);
         

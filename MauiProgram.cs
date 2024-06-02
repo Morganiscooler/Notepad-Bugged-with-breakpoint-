@@ -20,6 +20,8 @@ namespace Notepad__easy_
                 });
 
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<Create_NewNote>();
+            builder.Services.AddSingleton<NotePage>();
             builder.Services.AddSingleton<MainViewModel>();
 
             return builder.Build();

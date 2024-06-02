@@ -11,5 +11,14 @@
         Title="Welcome to Notepad! 📝"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <ShellContent
+        Title="Create New Note! 📝"
+        ContentTemplate="{DataTemplate local:Create_NewNote}"
+        Route="CreateNewNote" />
+
+    <ShellContent
+        Title="View Note! 📝"
+        ContentTemplate="{DataTemplate local:NotePage}"
+        Route="ViewNote" />
 
 </Shell>

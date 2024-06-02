@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    xmlns:viewmodel="clr-namespace:Notepad__easy_.ViewModel"
-    x:DataType="viewmodel:MainViewModel"
     x:Class="Notepad__easy_.NotePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="NotePage">
+    xmlns:viewmodel="clr-namespace:Notepad__easy_.ViewModel"
+    Title="{Binding Text}"
+    x:DataType="viewmodel:MainViewModel">
     <VerticalStackLayout>
         <Button
-            WidthRequest="150"
-            CornerRadius="25"
             x:Name="HomePage"
+            Command="{Binding AddCommand}"
+            ContentLayout="Left, 12"
+            CornerRadius="25"
             FontFamily="FluentIcons"
             FontSize="20"
             Text="Home"
-            Clicked="BackHome"
-            Command="{Binding AddCommand}" 
-            ContentLayout="Left, 12"
-            >
+            WidthRequest="150">
             <Button.ImageSource>
-                <FontImageSource FontFamily="FluentIconsReal" Glyph="&#xe760;" Size="25"/>
+                <FontImageSource
+                    FontFamily="FluentIconsReal"
+                    Glyph="&#xe760;"
+                    Size="25" />
             </Button.ImageSource>
         </Button>
         <ScrollView>

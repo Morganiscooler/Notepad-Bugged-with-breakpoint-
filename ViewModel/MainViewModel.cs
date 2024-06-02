@@ -23,8 +23,10 @@ namespace Notepad__easy_.ViewModel
         // The add function is not working right now, it is not adding newly created notepages to the MainPage
         // Fix this later
         // using this video https://youtu.be/5Qga2pniN78
-        void Add()
+        
+        private async void Add()
         {
+            //put this outside the func later
             int count = 0;
             if (string.IsNullOrWhiteSpace(Text))
             {
@@ -33,8 +35,33 @@ namespace Notepad__easy_.ViewModel
             }
    
             Items.Add(Text);
+            await Shell.Current.GoToAsync($"///MainPage");
             //adds the item to the MainPage's viewmodel
             Text = string.Empty;
+            //int noteNum = 0
+            //notePage.Title = EnterName.Text;
+
+
+            //if (string.IsNullOrWhiteSpace(Text))
+            //{
+            //    noteNum++
+            //    ViewNote.Title = $"New note ({noteNum})";
+            //}
+        }
+
+        [ICommand]
+        private async void ToCreationPage()
+        {
+            await Shell.Current.GoToAsync($"///CreateNewNote");
+
+        }
+
+        [ICommand]
+        private async void ToNotePage()
+        {
+
+            await Shell.Current.GoToAsync($"///ViewNote");
+
         }
 
         [ICommand]

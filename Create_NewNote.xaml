@@ -168,14 +168,14 @@
         </Grid>
         <Label x:Name="SliderValueTest" />
         <Button
-            x:Name="ContinueBtn"
+            x:Name="CreateNoteandView"
+            Command="{Binding ToNotePageCommand}"
             Margin="150,150,-500,100"
             BackgroundColor="#f25022"
             BorderColor="#000"
             BorderWidth="5"
-            Clicked="OpenNotePage"
             CornerRadius="3"
-            Text="Continue"
+            Text="Create and view"
             WidthRequest="300" />
     </VerticalStackLayout>
 </ContentPage>

@@ -22,17 +22,24 @@
                 Margin="50,50,50,50"
                 BorderColor="#000"
                 BorderWidth="5"
-                Clicked="OpenNote"
+                Command="{Binding ToCreationPageCommand}"
                 CornerRadius="1"
                 FontSize="25"
                 HeightRequest="100"
                 Text="Let's get started!"
                 WidthRequest="1050" />
 
-            <CollectionView Grid.Row="2" ItemsSource="{Binding Items}">
+            <!--
+                Next step: Figure out how to add spacing inbetween the new collectionviews, then add clickable events to
+                existing shell pages (do NOT create a new instance!!)
+            -->
+            <CollectionView
+                Grid.Row="2"
+                BackgroundColor="Aqua"
+                ItemsSource="{Binding Items}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type x:String}">
-                        <SwipeView BackgroundColor="Red">
+                        <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItem
                                     BackgroundColor="Red"
@@ -52,7 +59,7 @@
                 BackgroundColor="#4CA7FF"
                 BorderColor="#000"
                 BorderWidth="5"
-                Clicked="OpenNote"
+                Command="{Binding ToCreationPageCommand}"
                 CornerRadius="50"
                 HeightRequest="100"
                 WidthRequest="100">

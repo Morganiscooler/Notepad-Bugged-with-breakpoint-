@@ -30,24 +30,11 @@ namespace Notepad__easy_
             return new Color(r, g, b);
         }
 
-        int count = 0;
-        // Change the color randomizer to automatically happen when the DOM content loads for the app
-        // *Everytime it is reopened
-        private void CreateNewNotes(object sender, EventArgs e) 
-        {
-            // Click button works
-            Button btn = new Button();    
-            Notes.BackgroundColor = CreateColor();
-        }
-        int testcount = 0;
-
         // This function should be renamed to CreateNewNotes;
         // there needs to be a new function that occurs when you open a preexisting note...
         private void OpenNote(object sender, EventArgs e) 
         {
             // Click event works (Confirmed)
-            Create_NewNote openNote = new Create_NewNote();
-            Navigation.PushAsync(new Create_NewNote());  
 
         }
         public MainPage(MainViewModel vm)
@@ -55,10 +42,6 @@ namespace Notepad__easy_
             InitializeComponent();
             Notes.BackgroundColor = CreateColor();
             BindingContext = vm;
-
-
-            //Announce the amount of new notes created here on the Mainpage's grid
-            //SemanticScreenReader.Announce(noteCount.Text);
 
         }
         
