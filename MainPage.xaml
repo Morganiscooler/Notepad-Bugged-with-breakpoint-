@@ -33,21 +33,29 @@
                 Next step: Figure out how to add spacing inbetween the new collectionviews, then add clickable events to
                 existing shell pages (do NOT create a new instance!!)
             -->
-            <CollectionView
-                Grid.Row="2"
-                BackgroundColor="Aqua"
-                ItemsSource="{Binding Items}">
+
+            <CollectionView ItemsSource="{Binding Items}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type x:String}">
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItem
-                                    BackgroundColor="Red"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
-                                    CommandParameter="{Binding .}"
-                                    Text="Delete" />
-                            </SwipeView.RightItems>
-                        </SwipeView>
+                        <Grid Padding="0,0, 0, 20" HeightRequest="100" WidthRequest="1050">
+                            <!--
+                                    Fix the problem of generating multiple new notes at once,
+                                    when only adding 1 new note
+                                -->
+                            <!--
+                                    Set the BackgroundColor of the SwipeViews to be the color picked from the
+                                    creation page
+                                -->
+                            <SwipeView BackgroundColor="Gray">
+                                <SwipeView.RightItems>
+                                    <SwipeItem
+                                            BackgroundColor="Red"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Text="Delete" />
+                                </SwipeView.RightItems>
+                            </SwipeView>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
