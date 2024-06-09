@@ -4,10 +4,11 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:Notepad__easy_.ViewModel"
+    x:Name="thisPage"
     Title="Notepad 📝"
     x:DataType="viewmodel:MainViewModel">
 
-    <ScrollView>
+    <ScrollView x:Name="Content">
         <VerticalStackLayout Padding="30,0" Spacing="25">
             <Image />
             <SearchBar
@@ -17,6 +18,12 @@
                 WidthRequest="1050" />
             <ListView x:Name="searchResults" />
 
+
+            <!--
+                Next step: Figure out how to add spacing inbetween the new collectionviews, then add clickable events to
+                existing shell pages (do NOT create a new instance!!)
+            -->
+            <!--  IsVisible="{Binding RemoveStartButtonCommand}"  -->
             <Button
                 x:Name="Notes"
                 Margin="50,50,50,50"
@@ -26,39 +33,144 @@
                 CornerRadius="1"
                 FontSize="25"
                 HeightRequest="100"
+                IsVisible="False"
                 Text="Let's get started!"
-                WidthRequest="1050" />
+                WidthRequest="1050">
+                <Button.Triggers>
+                    <!--
+                        Fix the issue of when the value is set to 0 and value = True,
+                        the "Let's get started!" button does not disappear after
+                        the new notes are created
+                    -->
+                    <DataTrigger
+                        Binding="{Binding Items.Count}"
+                        TargetType="Button"
+                        Value="0">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Button.Triggers>
 
-            <!--
-                Next step: Figure out how to add spacing inbetween the new collectionviews, then add clickable events to
-                existing shell pages (do NOT create a new instance!!)
-            -->
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="FluentIconsReal"
+                        Glyph="&#xe819;"
+                        Size="35" />
+                </Button.ImageSource>
+            </Button>
 
-            <CollectionView ItemsSource="{Binding Items}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type x:String}">
-                        <Grid Padding="0,0, 0, 20" HeightRequest="100" WidthRequest="1050">
-                            <!--
-                                    Fix the problem of generating multiple new notes at once,
-                                    when only adding 1 new note
-                                -->
-                            <!--
+            <Grid x:Name="Container">
+                <StackLayout
+                    x:Name="MoreBtns"
+                    Margin="0,30,-780,0"
+                    x:DataType="{x:Type x:String}"
+                    BackgroundColor="LightGray"
+                    HeightRequest="250"
+                    IsVisible="False"
+                    WidthRequest="220"
+                    ZIndex="50">
+                    <Grid Padding="10" RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+
+                        </Grid.RowDefinitions>
+                        <Button
+                            Grid.Row="1"
+                            BackgroundColor="Aqua"
+                            Text="Edit"
+                            VerticalOptions="Fill" />
+                        <!--  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"  -->
+                        <!--
+                            Command="{Binding DeleteCommand,Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}}"
+                        -->
+
+                        <!--  The deletebtn command is working, however it is not recognizing what strings to delete  -->
+                        <!--  Maybe be more specific when setting the path with CommandParameter or Bindingcontext's reference?  -->
+                        <!--  Might need to change Binding Items => Binding .  -->
+                        <Button
+                            x:Name="DeleteBtn"
+                            Grid.Row="2"
+                            BackgroundColor="Red"
+                            BindingContext="{x:Reference NoteList}"
+                            Clicked="test"
+                            Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}}"
+                            Text="Delete"
+                            VerticalOptions="End" />
+
+                        <Button
+                            Grid.Row="3"
+                            BackgroundColor="Aqua"
+                            Text="Favorite"
+                            VerticalOptions="End" />
+                        <Button
+                            Grid.Row="4"
+                            BackgroundColor="Aqua"
+                            Text="Share"
+                            VerticalOptions="End" />
+                    </Grid>
+                </StackLayout>
+
+                <CollectionView
+                    x:Name="NoteList"
+                    ItemsSource="{Binding Items}"
+                    SelectionChanged="OnCollectionViewSelectionChanged"
+                    SelectionMode="Multiple">
+                    <CollectionView.ItemTemplate>
+                        <!--  x:DataType="{x:Type x:String}"  -->
+                        <DataTemplate x:DataType="{x:Type x:String}">
+                            <Grid
+                                Padding="0,0,0,20"
+                                HeightRequest="100"
+                                WidthRequest="1050">
+                                <!--
                                     Set the BackgroundColor of the SwipeViews to be the color picked from the
                                     creation page
                                 -->
-                            <SwipeView BackgroundColor="Gray">
-                                <SwipeView.RightItems>
-                                    <SwipeItem
-                                            BackgroundColor="Red"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
-                                            CommandParameter="{Binding .}"
-                                            Text="Delete" />
-                                </SwipeView.RightItems>
-                            </SwipeView>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                <!--
+                                    Swap out the SwipeView for buttons to open the notes, since swipeview only
+                                    works on mobile.
+                                -->
+
+                                <!--  When the red button is clicked, make a list view visible, and show three properties: Delete, Favorite, Share  -->
+
+                                <!--  Make sure this listview is visible first before I do more with it  -->
+
+                                <Button
+                                    x:Name="ViewMore"
+                                    Margin="0,-20,-980,0"
+                                    BackgroundColor="DarkGray"
+                                    Clicked="ShowMore"
+                                    CornerRadius="10"
+                                    HeightRequest="10"
+                                    WidthRequest="10"
+                                    ZIndex="50">
+                                    <Button.ImageSource>
+                                        <FontImageSource
+                                            FontFamily="FluentIconsReal"
+                                            Glyph="&#xe712;"
+                                            Size="20" />
+                                    </Button.ImageSource>
+                                </Button>
+                                <Border Stroke="Black" StrokeThickness="5">
+                                    <!--  Command="{Binding ToNotePageCommand}"  -->
+                                    <Button
+                                        x:Name="Note"
+                                        BackgroundColor="Gray"
+                                        CornerRadius="2"
+                                        FontSize="25"
+                                        Pressed="PressedBtn"
+                                        Released="ReleasedBtn"
+                                        Text="{Binding .}" />
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
             <!--  Add a ContentPage control for popup when Notes is clicked  -->
 
             <Button
@@ -71,6 +183,12 @@
                 CornerRadius="50"
                 HeightRequest="100"
                 WidthRequest="100">
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="FluentIconsReal"
+                        Glyph="&#xf8aa;"
+                        Size="45" />
+                </Button.ImageSource>
                 <!--  -import photo of plus icon here  -->
             </Button>
             <!--  for all buttons:  -->

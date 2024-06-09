@@ -20,9 +20,7 @@ namespace Notepad__easy_
 
         private static Color CreateColor()
         {
-            List<string> colors = new List<string> { "#ffe66e", "#a1ef9b", "#ffafdf", "#d7afff", "#9edfff" };
             var random = new Random();
-            // Change the random.Next color choices to the colors in the list eventually...
             var r = Convert.ToByte(random.Next(0, 255));
             var g = Convert.ToByte(random.Next(0, 255));
             var b = Convert.ToByte(random.Next(0, 255));
@@ -44,10 +42,63 @@ namespace Notepad__easy_
             BindingContext = vm;
 
         }
-        
 
-// set height directly or find handler then set winHeight
-       //int winWidth = 450;
+        // delete this
+        private void test(object sender, EventArgs e)
+        {
+            DeleteBtn.BackgroundColor = CreateColor();
+
+        }
+
+
+        // This crashes the program, should probably remove it...
+        // Also does not work, as the deselection is not working
+        private void OnCollectionViewSelectionChanged(object sender, EventArgs e) 
+        {
+
+            if (NoteList.SelectionMode == SelectionMode.Multiple)
+            {
+                NoteList.SelectionMode = SelectionMode.None;
+                NoteList.BackgroundColor = CreateColor();
+            }
+            else 
+            {
+                NoteList.SelectionMode = SelectionMode.Multiple;
+            }
+        }
+
+        private void ShowMore(object sender, EventArgs e)
+        {
+            // Click event works (Confirmed)
+            if (MoreBtns.IsVisible == false)
+            {
+                MoreBtns.IsVisible = true;
+            }
+            else
+            {
+                MoreBtns.IsVisible = false;
+            }
+
+            //MoreBtns.BackgroundColor = Colors.LightGray;
+
+
+        }
+
+        private void PressedBtn(object sender, EventArgs e)
+        {
+            // Click event works (Confirmed)
+            
+
+        }
+        private void ReleasedBtn(object sender, EventArgs e)
+        {
+            // Click event works (Confirmed)
+            
+
+        }
+
+        // set height directly or find handler then set winHeight
+        //int winWidth = 450;
 
         //public class SearchViewModel : INotifyPropertyChanged
         //{

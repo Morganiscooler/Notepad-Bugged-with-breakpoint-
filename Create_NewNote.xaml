@@ -177,5 +177,6 @@
             CornerRadius="3"
             Text="Create and view"
             WidthRequest="300" />
+
     </VerticalStackLayout>
 </ContentPage>

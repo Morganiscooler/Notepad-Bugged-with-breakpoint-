@@ -1,0 +1,71 @@
+﻿<SwipeView BackgroundColor="Gray">
+                                <Label FontSize="25" Text="{Binding .}" />
+                                <!--  Bind the newly created note's name the given Text from the entry  -->
+                                <SwipeView.RightItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="Auto">
+                                        <SwipeItem
+                                            BackgroundColor="Red"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
+                                            CommandParameter="{Binding .}"
+                                            IconImageSource="delete.png"
+                                            Text="Delete" />
+                                        <!--  Command="{Binding FavoriteCommand}"  -->
+                                        <SwipeItem
+                                            BackgroundColor="LightGreen"
+                                            IconImageSource="favorite.png"
+                                            Text="Favorite" />
+                                        <!--  Command="{Binding ShareCommand}"  -->
+                                        <SwipeItem
+                                            BackgroundColor="LightYellow"
+                                            IconImageSource="share.png"
+                                            Text="Share" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                            </SwipeView>
+<-------------------------------------------------------------------------------------->
+
+            <Grid>
+                <ListView
+                    x:Name="MoreBtns"
+                    Margin="0,30,-780,0"
+                    BackgroundColor="LightGray"
+                    HeightRequest="200"
+                    IsVisible="False"
+                    VerticalScrollBarVisibility="Never"
+                    WidthRequest="200"
+                    ZIndex="50">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Button
+                                        Grid.Row="1"
+                                        BackgroundColor="Aqua"
+                                        Text="Edit"
+                                        VerticalOptions="Fill"/>
+                                    <Button
+                                        Grid.Row="1"
+                                        BackgroundColor="Aqua"
+                                        Command="{Binding DeleteCommand}"
+                                        Text="Delete"
+                                        VerticalOptions="End" />
+                                    <Button
+                                        Grid.Row="2"
+                                        BackgroundColor="Aqua"
+                                        Text="Favorite"
+                                        VerticalOptions="End" />
+                                    <Button
+                                        Grid.Row="3"
+                                        BackgroundColor="Aqua"
+                                        Text="Share"
+                                        VerticalOptions="End" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
