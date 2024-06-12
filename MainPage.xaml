@@ -161,7 +161,7 @@
                                     <!--  Command="{Binding ToNotePageCommand}"  -->
                                     <Button
                                         x:Name="Note"
-                                        BackgroundColor="Gray"
+                                        BackgroundColor="{Binding BackgroundColor, Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}}"
                                         CornerRadius="2"
                                         FontSize="25"
                                         Pressed="PressedBtn"

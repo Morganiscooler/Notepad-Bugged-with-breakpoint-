@@ -255,22 +255,6 @@ public partial class Create_NewNote : ContentPage
         return null;
     }
 
-    int noteNum = 0;
-    int noteCount = 0;
-    private void OpenNotePage(object sender, EventArgs e)
-    {
-        noteNum++;
-        MainViewModel vm = new MainViewModel();
-        NotePage notePage = new NotePage(vm);
-        //* Find a way to display text on the mainpage about the amount of new notes created
-        noteCount++;
-        //mainPage.DisplayAlert($"The amount of new notes created is {noteCount}");
-
-
-
-        Navigation.PushAsync(notePage);
-        
-    }
 
 
 

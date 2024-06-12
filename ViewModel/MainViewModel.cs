@@ -153,6 +153,8 @@ namespace Notepad__easy_.ViewModel
         //    return new Color(r, g, b);
         //}
 
+        // Navigation pages
+        //=======================================================================================>
 
         [ICommand]
         private async void ToCreationPage()
@@ -168,6 +170,93 @@ namespace Notepad__easy_.ViewModel
             await Shell.Current.GoToAsync($"///ViewNote");
 
         }
+
+        // Setting color for NotePages
+        //=======================================================================================>
+        public Command ChangeColorYellow
+        {
+            get
+            {
+                return new Command(() => {
+
+                    //Change here button background colors
+                    BackgroundColor = Color.FromHex("ffe66e"); //or something
+                });
+            }
+        }
+
+        public Command ChangeColorGreen
+        {
+            get
+            {
+                return new Command(() => {
+
+                    //Change here button background colors
+                    BackgroundColor = Color.FromHex("a1ef9b"); //or something
+                });
+            }
+        }
+
+        public Command ChangeColorPink
+        {
+            get
+            {
+                return new Command(() => {
+
+                    //Change here button background colors
+                    BackgroundColor = Color.FromHex("ffafdf"); //or something
+                });
+            }
+        }
+
+        public Command ChangeColorPurple
+        {
+            get
+            {
+                return new Command(() => {
+
+                    //Change here button background colors
+                    BackgroundColor = Color.FromHex("d7afff"); //or something
+                });
+            }
+        }
+
+        public Command ChangeColorBlue
+        {
+            get
+            {
+                return new Command(() => {
+
+                    //Change here button background colors
+                    BackgroundColor = Color.FromHex("9edfff"); //or something
+                });
+            }
+        }
+
+        public Command ChangeColorLightGray
+        {
+            get
+            {
+                return new Command(() => {
+
+                    //Change here button background colors
+                    BackgroundColor = Colors.LightGray; //or something
+                });
+            }
+        }
+
+        private Color _backgroundColor = Colors.White;
+        public Color BackgroundColor
+            {
+                get { return _backgroundColor; }
+                set
+                {
+                    if (value == _backgroundColor)
+                        return;
+
+                    _backgroundColor = value;
+                }
+            }
 
 
 
