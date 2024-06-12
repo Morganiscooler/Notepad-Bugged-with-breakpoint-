@@ -1,16 +1,87 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Notepad__easy_.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
 
+        // The ID system is not fully developed yet...
         public MainViewModel()
         {
             Items = new ObservableCollection<string>();
+
+            UserItems = new ObservableCollection<Item>
+            {
+                new Item {Itemid = "1"},
+                new Item {Itemid = "2"},
+                new Item {Itemid = "3"},
+            };
+        }
+
+
+        //public List<String> SelectedItems { get; }
+        // The class may not be working, I don't quite understand this part
+        // 
+        public class Item 
+        {
+            public string Itemid { get; set; }
+        }
+
+        Item selectedItem;
+        public Item SelectedItem 
+        {
+            get
+            {
+                return selectedItem;
+            }
+            set
+            {
+                if (selectedItem != value)
+                {
+                    selectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+
+                    if (SelectedItem != null) 
+                    {
+                        // Perform the navigation to the selected item's page
+                        PerformNavigation(SelectedItem.Itemid);
+                    }
+                }
+            }
+        }
+
+        private ObservableCollection<Item> userItems;
+        public ObservableCollection<Item> UserItems 
+        {
+            get 
+            {
+                return userItems;
+            }
+            set
+            { 
+                userItems = value;
+                OnPropertyChanged("UserItems");
+                    
+            }
+        }
+        private async void PerformNavigation(string id)
+        {
+            // just test out with the first 3 id pages
+            // the pages may be deleted if the test for grabbing IDs does not work
+            if (id == "1")
+            {
+                await Shell.Current.GoToAsync($"///ViewNote");
+            }
+            else if (id == "2")
+            {
+                await Shell.Current.GoToAsync($"///ViewNote2");
+            }
+            else 
+            {
+                await Shell.Current.GoToAsync($"///ViewNote3");
+            }
         }
 
         [ObservableProperty]
@@ -49,10 +120,13 @@ namespace Notepad__easy_.ViewModel
             // Fix the delete command not working
             if (Items.Contains(s))
             {
+                Console.WriteLine($"{s} has been deleted!");
                 Items.Remove(s);
             }
             //removes the item from the MainPage's viewmodel
         }
+
+
 
 
         [ICommand]

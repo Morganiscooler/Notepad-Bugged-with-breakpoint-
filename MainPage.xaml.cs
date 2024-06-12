@@ -53,19 +53,6 @@ namespace Notepad__easy_
 
         // This crashes the program, should probably remove it...
         // Also does not work, as the deselection is not working
-        private void OnCollectionViewSelectionChanged(object sender, EventArgs e) 
-        {
-
-            if (NoteList.SelectionMode == SelectionMode.Multiple)
-            {
-                NoteList.SelectionMode = SelectionMode.None;
-                NoteList.BackgroundColor = CreateColor();
-            }
-            else 
-            {
-                NoteList.SelectionMode = SelectionMode.Multiple;
-            }
-        }
 
         private void ShowMore(object sender, EventArgs e)
         {

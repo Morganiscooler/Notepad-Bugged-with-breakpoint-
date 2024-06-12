@@ -21,4 +21,13 @@
         ContentTemplate="{DataTemplate local:NotePage}"
         Route="ViewNote" />
 
+    <ShellContent
+        Title="View Note! 2"
+        ContentTemplate="{DataTemplate local:notepage2}"
+        Route="ViewNote2" />
+
+    <ShellContent
+        Title="View Note! 3"
+        ContentTemplate="{DataTemplate local:notepage3}"
+        Route="ViewNote3" />
 </Shell>

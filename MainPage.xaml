@@ -62,7 +62,6 @@
                 <StackLayout
                     x:Name="MoreBtns"
                     Margin="0,30,-780,0"
-                    x:DataType="{x:Type x:String}"
                     BackgroundColor="LightGray"
                     HeightRequest="250"
                     IsVisible="False"
@@ -95,9 +94,9 @@
                             x:Name="DeleteBtn"
                             Grid.Row="2"
                             BackgroundColor="Red"
-                            BindingContext="{x:Reference NoteList}"
                             Clicked="test"
                             Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}}"
+                            CommandParameter=""
                             Text="Delete"
                             VerticalOptions="End" />
 
@@ -114,11 +113,14 @@
                     </Grid>
                 </StackLayout>
 
+
+                <!--  Replace the Useritems back to => Items  -->
+                <!--  This is just a test to see if the 3 ids work  -->
                 <CollectionView
                     x:Name="NoteList"
                     ItemsSource="{Binding Items}"
-                    SelectionChanged="OnCollectionViewSelectionChanged"
-                    SelectionMode="Multiple">
+                    SelectedItem="SelectedItem"
+                    SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <!--  x:DataType="{x:Type x:String}"  -->
                         <DataTemplate x:DataType="{x:Type x:String}">
