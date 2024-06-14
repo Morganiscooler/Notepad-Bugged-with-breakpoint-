@@ -6,6 +6,7 @@
         {
             InitializeComponent();
 
+            //Routing.RegisterRoute(nameof(ViewNote), typeof(ViewNote));
             MainPage = new AppShell();
         }
 
