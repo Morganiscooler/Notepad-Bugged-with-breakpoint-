@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    xmlns:viewmodel="clr-namespace:Notepad__easy_.ViewModel"
-    x:DataType="viewmodel:MainViewModel"
     x:Class="Notepad__easy_.Create_NewNote"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Create new note">
+    xmlns:viewmodel="clr-namespace:Notepad__easy_.ViewModel"
+    Title="Create new note"
+    x:DataType="viewmodel:MainViewModel">
 
 
     <VerticalStackLayout>
@@ -49,60 +49,60 @@
             <Button
                 x:Name="yellow"
                 BackgroundColor="#ffe66e"
-                Command="{Binding ChangeColorYellow}"
                 BorderColor="Black"
                 BorderWidth="3"
                 Clicked="Yellow"
+                Command="{Binding ChangeColorYellow}"
                 CornerRadius="1" />
 
             <Button
                 x:Name="green"
                 Grid.Column="1"
                 BackgroundColor="#a1ef9b"
-                Command="{Binding ChangeColorGreen}"
                 BorderColor="Black"
                 BorderWidth="3"
                 Clicked="Green"
+                Command="{Binding ChangeColorGreen}"
                 CornerRadius="1" />
 
             <Button
                 x:Name="pink"
                 Grid.Column="2"
                 BackgroundColor="#ffafdf"
-                Command="{Binding ChangeColorPink}"
                 BorderColor="Black"
                 BorderWidth="3"
                 Clicked="Pink"
+                Command="{Binding ChangeColorPink}"
                 CornerRadius="1" />
 
             <Button
                 x:Name="purple"
                 Grid.Column="3"
                 BackgroundColor="#d7afff"
-                Command="{Binding ChangeColorPurple}"
                 BorderColor="Black"
                 BorderWidth="3"
                 Clicked="Purple"
+                Command="{Binding ChangeColorPurple}"
                 CornerRadius="1" />
 
             <Button
                 x:Name="blue"
                 Grid.Column="4"
                 BackgroundColor="#9edfff"
-                Command="{Binding ChangeColorBlue}"
                 BorderColor="Black"
                 BorderWidth="3"
                 Clicked="Blue"
+                Command="{Binding ChangeColorBlue}"
                 CornerRadius="1" />
 
             <Button
                 x:Name="gray"
                 Grid.Column="5"
                 BackgroundColor="LightGray"
-                Command="{Binding ChangeColorLightGray}"
                 BorderColor="Black"
                 BorderWidth="3"
                 Clicked="Gray"
+                Command="{Binding ChangeColorLightGray}"
                 CornerRadius="1" />
 
             <Button
@@ -175,11 +175,11 @@
         <Label x:Name="SliderValueTest" />
         <Button
             x:Name="CreateNoteandView"
-            Command="{Binding ToNotePageCommand}"
             Margin="150,150,-500,100"
             BackgroundColor="#f25022"
             BorderColor="#000"
             BorderWidth="5"
+            Command="{Binding ToNotePageCommand}"
             CornerRadius="3"
             Text="Create and view"
             WidthRequest="300" />

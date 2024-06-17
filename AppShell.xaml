@@ -11,29 +11,4 @@
         Title="Welcome to Notepad! 📝"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-    <ShellContent
-        Title="Create New Note! 📝"
-        ContentTemplate="{DataTemplate local:Create_NewNote}"
-        Route="CreateNewNote" />
-
-    <!--  The reason why the background color is locked to 1 color is: The shell navigates to one page specifically  -->
-    <!--  Fix this by: adding more NotePages for individual notes to be made each time, and not the same note  -->
-    <!--  !! Fix this !!  -->
-
-    <ShellContent
-        Title="View Note! 📝"
-        ContentTemplate="{DataTemplate local:NotePage}"
-        Route="ViewNote" />
-
-
-    <!--  These are test pages, delete them after I figure out how to assign IDs to the notes automatically  -->
-    <ShellContent
-        Title="View Note! 2"
-        ContentTemplate="{DataTemplate local:notepage2}"
-        Route="ViewNote2" />
-
-    <ShellContent
-        Title="View Note! 3"
-        ContentTemplate="{DataTemplate local:notepage3}"
-        Route="ViewNote3" />
 </Shell>

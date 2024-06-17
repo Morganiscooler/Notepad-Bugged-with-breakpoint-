@@ -12,83 +12,25 @@ namespace Notepad__easy_.ViewModel
         {
             Items = new ObservableCollection<string>();
 
-            UserItems = new ObservableCollection<Item>
-            {
-                new Item {Itemid = "1"},
-                new Item {Itemid = "2"},
-                new Item {Itemid = "3"},
-            };
         }
 
 
         //public List<String> SelectedItems { get; }
         // The class may not be working, I don't quite understand this part
         // 
-        public class Item 
-        {
-            public string Itemid { get; set; }
-        }
-
-        Item selectedItem;
-        public Item SelectedItem 
-        {
-            get
-            {
-                return selectedItem;
-            }
-            set
-            {
-                if (selectedItem != value)
-                {
-                    selectedItem = value;
-                    OnPropertyChanged("SelectedItem");
-
-                    if (SelectedItem != null) 
-                    {
-                        // Perform the navigation to the selected item's page
-                        PerformNavigation(SelectedItem.Itemid);
-                    }
-                }
-            }
-        }
-
-        private ObservableCollection<Item> userItems;
-        public ObservableCollection<Item> UserItems 
-        {
-            get 
-            {
-                return userItems;
-            }
-            set
-            { 
-                userItems = value;
-                OnPropertyChanged("UserItems");
-                    
-            }
-        }
-        private async void PerformNavigation(string id)
-        {
-            // just test out with the first 3 id pages
-            // the pages may be deleted if the test for grabbing IDs does not work
-            if (id == "1")
-            {
-                await Shell.Current.GoToAsync($"///ViewNote");
-            }
-            else if (id == "2")
-            {
-                await Shell.Current.GoToAsync($"///ViewNote2");
-            }
-            else 
-            {
-                await Shell.Current.GoToAsync($"///ViewNote3");
-            }
-        }
 
         [ObservableProperty]
         ObservableCollection<string> items;
 
         [ObservableProperty]
         string text;
+
+        [ObservableProperty]
+        string note;
+
+        [ObservableProperty]
+        Color changecolor;
+
 
         [ICommand]
         private async void Add()
@@ -110,12 +52,11 @@ namespace Notepad__easy_.ViewModel
             // Add a function here that removes the "Let's get started!" button after the first new note has been added
             Text = string.Empty;
 
-
-            await Shell.Current.GoToAsync($"///MainPage");
+            await Shell.Current.GoToAsync($"../../");
         }
 
         [ICommand]
-        private async void Delete(string s)
+        void Delete(string s)
         {
             // Fix the delete command not working
             if (Items.Contains(s))
@@ -126,22 +67,6 @@ namespace Notepad__easy_.ViewModel
             //removes the item from the MainPage's viewmodel
         }
 
-
-
-
-        [ICommand]
-        private async void ColorChanged() 
-        {
-            List<string> colors = new List<string> { "#ffe66e", "#a1ef9b", "#ffafdf", "#d7afff", "#9edfff" };
-            // I want to a command where when the user selects a specific color from the list on the creation screen,
-            // the chosen color will be the background of the NotePage along with being the background of the preview
-            // of the SwipeView on the mainpage
-            foreach (string color in colors) 
-            {
-                //if (colors[].Select)
-            }
-            
-        }
         //[ICommand]
         //void CreateColor()
         //{
@@ -155,24 +80,32 @@ namespace Notepad__easy_.ViewModel
 
         // Navigation pages
         //=======================================================================================>
-
         [ICommand]
-        private async void ToCreationPage()
+        async Task Tap(string s) 
         {
-            await Shell.Current.GoToAsync($"///CreateNewNote");
-
+            string n = Note;
+            Changecolor = BackgroundColor;
+            Color color = Changecolor;
+            // Need to modify NotePage so it saves a different text for each individual newly created note
+            await Shell.Current.GoToAsync($"{nameof(NewNotePage)}?Text={s}&Note={n}&Color={color}");
         }
 
-        [ICommand]
-        private async void ToNotePage()
-        {
-            // Also fix the issue of the buttons in the collectionview not leading to the saved note page
-            await Shell.Current.GoToAsync($"///ViewNote");
 
-        }
+        [ICommand]
+        Task ToCreationPage() => Shell.Current.GoToAsync(nameof(Create_NewNote));
+
+        
+
+        [ICommand]
+        Task ToNotePage() => Shell.Current.GoToAsync(nameof(NotePage));
+
+        // Also fix the issue of the buttons in the collectionview not leading to the saved note page
+
+
+
 
         // Setting color for NotePages
-        //=======================================================================================>
+        //=======================================================================================> 
         public Command ChangeColorYellow
         {
             get
@@ -245,7 +178,7 @@ namespace Notepad__easy_.ViewModel
             }
         }
 
-        private Color _backgroundColor = Colors.White;
+        private Color _backgroundColor = Color.FromHex("ffe66e");
         public Color BackgroundColor
             {
                 get { return _backgroundColor; }

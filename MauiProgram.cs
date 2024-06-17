@@ -24,6 +24,7 @@ namespace Notepad__easy_
             builder.Services.AddSingleton<MainViewModel>();
 
             builder.Services.AddTransient<NotePage>();
+            builder.Services.AddTransient<NewNotePage>();
             builder.Services.AddTransient<DetailViewModel>();
             return builder.Build();
         }

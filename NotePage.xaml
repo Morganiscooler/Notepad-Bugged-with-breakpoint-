@@ -30,7 +30,8 @@
             <Entry
                 x:Name="Notepad"
                 HeightRequest="700"
-                WidthRequest="1150" />
+                WidthRequest="1150" 
+                Text="{Binding Note}"/>
             <!--  FontSize="{Binding FontSizeChanged (add MVVM command here)}"  -->
         </ScrollView>
     </VerticalStackLayout>

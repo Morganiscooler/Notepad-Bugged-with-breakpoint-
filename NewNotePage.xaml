@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Notepad__easy_.NewNotePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Notepad__easy_.ViewModel"
+    Title="{Binding Text}"
+    x:DataType="viewmodel:DetailViewModel">
+    <VerticalStackLayout BackgroundColor="{Binding Changecolor}">
+        <Button
+            Command="{Binding GobackCommand}"
+            ContentLayout="Left, 12"
+            CornerRadius="25"
+            FontFamily="FluentIcons"
+            FontSize="20"
+            Text="Home"
+            WidthRequest="150">
+            <Button.ImageSource>
+                <FontImageSource
+                    FontFamily="FluentIconsReal"
+                    Glyph="&#xe760;"
+                    Size="25" />
+            </Button.ImageSource>
+        </Button>
+        <!--  Find a way to pass the note from NotePage's entry to the entry of NewNotePage  -->
+        <Label
+            HeightRequest="700"
+            Text="{Binding Note}"
+            WidthRequest="1150" />
+    </VerticalStackLayout>
+</ContentPage>
