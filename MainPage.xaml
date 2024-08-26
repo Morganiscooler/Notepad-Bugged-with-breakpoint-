@@ -18,7 +18,28 @@
                 WidthRequest="1050" />
             <ListView x:Name="searchResults" />
 
-
+            <Button
+                Margin="-900,-50,0,0"
+                BackgroundColor="Gray"
+                Command="{Binding ClearCommand}"
+                IsVisible="True"
+                Text="Clear all"
+                WidthRequest="130">
+                <Button.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Items.Count}"
+                        TargetType="Button"
+                        Value="0">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Button.Triggers>
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="FluentIconsReal"
+                        Glyph="&#xed62;"
+                        Size="35" />
+                </Button.ImageSource>
+            </Button>
             <!--
                 Next step: Figure out how to add spacing inbetween the new collectionviews, then add clickable events to
                 existing shell pages (do NOT create a new instance!!)
@@ -90,6 +111,7 @@
                         <!--  The deletebtn command is working, however it is not recognizing what strings to delete  -->
                         <!--  Maybe be more specific when setting the path with CommandParameter or Bindingcontext's reference?  -->
                         <!--  Might need to change Binding Items => Binding .  -->
+                        <!--  The problem may be that the Deletebtn is targetting itself, it does not contain a string. Make it target the buttons specifically  -->
                         <Button
                             x:Name="DeleteBtn"
                             Grid.Row="2"
@@ -165,9 +187,10 @@
                                         FontSize="25"
                                         Pressed="PressedBtn"
                                         Released="ReleasedBtn"
-                                        Text="{Binding .}" >
+                                        Text="{Binding Text, Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}}">
+
                                         <Button.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding TapCommand, Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}}" CommandParameter="{Binding .}"/>
+                                            <TapGestureRecognizer Command="{Binding TapCommand, Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}}" CommandParameter="{Binding .}" />
                                         </Button.GestureRecognizers>
                                     </Button>
                                 </Border>

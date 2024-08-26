@@ -6,10 +6,10 @@
     xmlns:viewmodel="clr-namespace:Notepad__easy_.ViewModel"
     Title="{Binding Text}"
     x:DataType="viewmodel:MainViewModel">
-    <!-- The reason why the background color is locked to 1 color is: The shell navigates to one page specifically-->
-    <!--Fix this by: adding more NotePages for individual notes to be made each time, and not the same note-->
-    <!--!! Fix this !!-->
-    <VerticalStackLayout BackgroundColor="{Binding BackgroundColor}">
+    <!--  The reason why the background color is locked to 1 color is: The shell navigates to one page specifically  -->
+    <!--  Fix this by: adding more NotePages for individual notes to be made each time, and not the same note  -->
+    <!--  !! Fix this !!  -->
+    <VerticalStackLayout BackgroundColor="{Binding Changecolor}">
         <Button
             x:Name="HomePage"
             Command="{Binding AddCommand}"
@@ -29,9 +29,11 @@
         <ScrollView>
             <Entry
                 x:Name="Notepad"
+                FontSize="{Binding Fontsize}"
                 HeightRequest="700"
-                WidthRequest="1150" 
-                Text="{Binding Note}"/>
+                Text="{Binding Note}"
+                WidthRequest="1150" />
+            <!--  FontSize="{Binding Fontsize}"  -->
             <!--  FontSize="{Binding FontSizeChanged (add MVVM command here)}"  -->
         </ScrollView>
     </VerticalStackLayout>

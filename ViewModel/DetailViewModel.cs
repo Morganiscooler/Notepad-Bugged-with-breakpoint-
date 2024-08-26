@@ -6,6 +6,7 @@ namespace Notepad__easy_.ViewModel;
 [QueryProperty(nameof(Text),nameof(Text))]
 [QueryProperty(nameof(Note), nameof(Note))]
 [QueryProperty(nameof(Changecolor), nameof(Changecolor))]
+[QueryProperty(nameof(Fontsize), nameof(Fontsize))]
 public partial class DetailViewModel : ObservableObject
 {
     [ObservableProperty]
@@ -13,6 +14,9 @@ public partial class DetailViewModel : ObservableObject
 
     [ObservableProperty]
     string note;
+
+    [ObservableProperty]
+    double fontsize;
 
     [ObservableProperty]
     Color changecolor;

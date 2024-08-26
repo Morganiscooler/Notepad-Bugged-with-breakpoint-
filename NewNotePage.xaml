@@ -26,6 +26,7 @@
         <Label
             HeightRequest="700"
             Text="{Binding Note}"
+            FontSize="{Binding Fontsize}"
             WidthRequest="1150" />
     </VerticalStackLayout>
 </ContentPage>

@@ -13,7 +13,6 @@ namespace Notepad__easy_.ViewModel
         {
 
             Items = new ObservableCollection<string>();
-
         }
 
 
@@ -28,7 +27,13 @@ namespace Notepad__easy_.ViewModel
         string text;
 
         [ObservableProperty]
+        string id;
+
+        [ObservableProperty]
         string note;
+
+        [ObservableProperty]
+        double fontsize;
 
         [ObservableProperty]
         Color changecolor;
@@ -45,47 +50,54 @@ namespace Notepad__easy_.ViewModel
                 // Fix the issue of the count repeatedly being 1 instead of going up
                 count++;
                 Text = $"New note({count})";
-                Items.Add(Text);
+                Items.Add(Id);
+                //Items.Add(item: "a");
             }
             else
             {
-                Items.Add(Text);
+                Items.Add(Id);
             }
             // Add a function here that removes the "Let's get started!" button after the first new note has been added
-            //Text = string.Empty;
+            // Allow each newly created note to have a new name instead of the same name
+            Text = string.Empty;
 
             await Shell.Current.GoToAsync($"../../");
         }
+  
 
         [ICommand]
-        void Delete()
+        void Clear()
         {
-            string s = Text;
+            Items.Clear();
+        }
+
+        [ICommand]
+        void Delete(string s)
+        {
+            //string s = Text;
             // Problem: Item does not contain s, find what else it contains so it can remove it.
             // items will never contain Text, because it gets reset to string.Empty at the end.
 
             // Find a way to remove anything that contains ANY string and not just a specific set of strings
-            if (!Items.Contains(s))
+            if (!Items.Contains(item: Id))
             {
-                Items.Add(s);
+                Items.Add(item: Id);
             }
-            else 
+            else
             {
-                Items.Remove(s); 
+                Items.Remove(item: Id);
             }
+
             //removes the item from the MainPage's viewmodel
         }
 
-        //[ICommand]
-        //void CreateColor()
-        //{
-        //    var random = new Random();
-        //    var r = Convert.ToByte(random.Next(0, 255));
-        //    var g = Convert.ToByte(random.Next(0, 255));
-        //    var b = Convert.ToByte(random.Next(0, 255));
-
-        //    return new Color(r, g, b);
-        //}
+        [ICommand]
+        void ColorYellow()
+        {
+            // Find a way to pass over the hex color to NewNotePage
+            Changecolor = Color.FromHex("#ffe66e");
+            //BackgroundColor = Changecolor;
+        }
 
         // Navigation pages
         //=======================================================================================>
@@ -100,9 +112,9 @@ namespace Notepad__easy_.ViewModel
             // Need to modify NotePage so it saves a different text for each individual newly created note
 
             // Changecolor is not working ?
-            Changecolor = Colors.Red; // Change this to be flexible to the 6 different colors + choose from file
+             // Change this to be flexible to the 6 different colors + choose from file
             Color color = Changecolor;
-            await Shell.Current.GoToAsync($"{nameof(NewNotePage)}?Text={s}&Note={n}&Color={color}");
+            await Shell.Current.GoToAsync($"{nameof(NewNotePage)}?Text={s}&Note={n}&Color={color}&TextSize={Fontsize}");
         }
 
 
@@ -121,6 +133,33 @@ namespace Notepad__easy_.ViewModel
 
         // Setting color for NotePages
         //=======================================================================================> 
+        [ICommand]
+        public async Task<FileResult> PickAndShow(PickOptions options)
+        {
+            try
+            {
+                var result = await FilePicker.Default.PickAsync(options);
+                 
+                if (result != null)
+                {
+                    if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
+                        result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+                    {
+                        using var stream = await result.OpenReadAsync();
+                        var image = ImageSource.FromStream(() => stream);
+                    }
+                }
+
+                // Returns the correct result, now just need to set it as the NotePage & NewNotePage's background
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // The user canceled or something went wrong
+            }
+
+            return null;
+        }
         public Command ChangeColorYellow
         {
             get

@@ -15,6 +15,12 @@
             Placeholder="Enter a name for your note"
             Text="{Binding Text}"
             WidthRequest="800" />
+        <Entry
+            MaxLength="1"
+            Placeholder="ID"
+            WidthRequest="50" 
+            Text="{Binding Id, Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}}"
+            />
         <!--  5 Colors to choose from; Must be centered evenly  -->
         <!--  Note: make sure to not put a flexlayout inside/outside of grid  -->
 
@@ -52,7 +58,7 @@
                 BorderColor="Black"
                 BorderWidth="3"
                 Clicked="Yellow"
-                Command="{Binding ChangeColorYellow}"
+                Command="{Binding ColorYellowCommand}"
                 CornerRadius="1" />
 
             <Button
@@ -112,6 +118,7 @@
                 BorderColor="Black"
                 BorderWidth="3"
                 Clicked="UploadNoteColor"
+                Command="{Binding PickAndShowCommand}"
                 CornerRadius="1"
                 Pressed="PressedBtn"
                 Released="ReleasedBtn"
@@ -151,6 +158,7 @@
                 Text="A"
                 TextColor="Black"
                 WidthRequest="30" />
+            <!--  DragCompletedCommand="{Binding TextSizeCommand}"  -->
             <Slider
                 x:Name="Slider"
                 Grid.Row="3"
@@ -158,7 +166,8 @@
                 Maximum="50"
                 Minimum="0"
                 ValueChanged="FontSize"
-                WidthRequest="250" />
+                WidthRequest="250"
+                Value="{Binding Fontsize}" />
             <Button
                 Grid.Column="4"
                 BackgroundColor="#fff"

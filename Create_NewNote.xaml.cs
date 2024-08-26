@@ -19,7 +19,7 @@ public partial class Create_NewNote : ContentPage
 		InitializeComponent();
 		BindingContext = vm;
     }
-    private void FontSize(object sender, EventArgs e) 
+    private async void FontSize(object sender, EventArgs e)
     {
         double value = Slider.Value;
         SliderValueTest.FontSize = value;
